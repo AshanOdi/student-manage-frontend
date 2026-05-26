@@ -1,8 +1,9 @@
-import { Button, Card, Input, message, Space, Table } from "antd";
+import { Button, Card, Form, Input, message, Space, Table } from "antd";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import type { Student } from "../types/types";
 import StudentModal from "../components/StudentModal";
+import ViewStudentModal from "../components/ViewStudentModal";
 
 export default function Students() {
   const [students, setStudents] = useState<Student[]>([]);
@@ -11,6 +12,9 @@ export default function Students() {
 
   const [open, setOpen] = useState(false); //newwwwwwwww
   const [editingStudent, setEditingStudent] = useState<any>(null); //newwwwwwwww
+
+  const [viewOpen, setViewOpen] = useState(false);
+  const [viewStudent, setViewStudent] = useState<Student | null>(null);
 
   const fetchStudents = async () => {
     try {
@@ -49,6 +53,16 @@ export default function Students() {
 
       render: (_: any, record: Student) => (
         <Space>
+          <Button
+            onClick={() => {
+              setViewStudent(record);
+
+              setViewOpen(true);
+            }}
+          >
+            View
+          </Button>
+
           {user.role === "admin" && (
             <>
               <Button
@@ -107,6 +121,11 @@ export default function Students() {
               onClose={() => setOpen(false)}
               fetchStudents={fetchStudents}
               editingStudent={editingStudent}
+            />
+            <ViewStudentModal
+              open={viewOpen}
+              onClose={() => setViewOpen(false)}
+              student={viewStudent}
             />
           </div>
         </div>

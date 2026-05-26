@@ -62,12 +62,7 @@ export default function StudentModal({
       footer={null}
       title={isEditing ? "Edit Student" : "Create Student"}
     >
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={onFinish}
-        initialValues={editingStudent}
-      >
+      <Form form={form} layout="vertical" onFinish={onFinish}>
         <Form.Item
           label="Name"
           name="name"
