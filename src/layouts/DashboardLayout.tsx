@@ -109,8 +109,8 @@ export default function DashboardLayout() {
   };
 
   return (
-    <Layout className="min-h-screen">
-      <Sider>
+    <Layout className=" min-h-screen">
+      <Sider className="min-h-screen">
         <div className="text-white text-center p-4 text-lg font-bold">
           Student CMS
         </div>
